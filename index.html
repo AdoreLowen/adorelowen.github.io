@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdoreLowen | Home Page</title>
-    <!-- SEO -->
+    <!-- SEO & Meta Tags remain same -->
     <meta name="description" content="AdoreLowen's Home Page. Otomader & AE Script/Plugin Developer">
     <meta name="keywords" content="AdoreLowen, 音MAD, Otomad, After Effects, AE, Script, Plugin, Dev">
-
+    
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adorelowen.github.io/">
@@ -15,20 +15,45 @@
     <meta property="og:description" content="Click to view my personal profile, Otomad portfolio, and AE tool development updates.">
     <meta property="og:image" content="https://adorelowen.github.io/og-image.jpg">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AdoreLowen | Otomader & AE Script/Plugin Developer">
-    <meta name="twitter:description" content="Click to view my personal profile, Otomad portfolio, and AE tool development updates.">
-    <meta name="twitter:image" content="https://adorelowen.github.io/og-image.jpg">
-
     <link rel="icon" href="favicon.png" type="image/png">
-    <style>
+    
+    <style> 
+        /* 甲骨文 */
+        @font-face {
+            font-family: 'OracleFont'; 
+            src: url('fonts/jiagu.ttf') format('truetype');
+            font-display: swap;
+        }
+        /* 金文 */
+        @font-face {
+            font-family: 'BronzeFont';
+            src: url('fonts/jinwen.ttf') format('truetype');
+            font-display: swap;
+        }
+        /* 小篆 */
+        @font-face {
+            font-family: 'SealFont';
+            src: url('fonts/zhuan.ttf') format('truetype');
+            font-display: swap;
+        }
+        /* 隶书 */
+        @font-face {
+            font-family: 'ClericalFont';
+            src: url('fonts/lishu.ttf') format('truetype');
+            font-display: swap;
+        }
+        /* 楷书 */
+        @font-face {
+            font-family: 'RegularFont';
+            src: url('fonts/kai.ttf') format('truetype');
+            font-display: swap;
+        }
+
         /* --- 全局设置 --- */
         :root {
             --bg-color: #050505;
             --text-main: #ffffff;
             --text-sub: #888888;
-            --accent-glow: rgba(255, 255, 255, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,60 +68,59 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* --- 动态背景 --- */
+        /* --- 动态背景层 (Canvas) --- */
+        #hanziRain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
         .background-fx {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
+            z-index: -2;
             overflow: hidden;
+            pointer-events: none;
         }
-
-        /* 网格背景 */
-        .grid-overlay {
-            position: absolute;
-            width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-        }
-
-        /* 浮动光斑 */
+            /* 网格背景 */
+    .grid-overlay {
+        position: absolute;
+        width: 100%; height: 100%;
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    }
+        /* 浮动光斑*/
         .glow-orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.4;
+            opacity: 0.3; 
             animation: floatMove 20s infinite alternate ease-in-out;
         }
 
-        .orb-1 {
-            width: 400px; height: 400px;
-            background: #4a4a4a;
-            top: -100px; left: -100px;
-        }
-
-        .orb-2 {
-            width: 500px; height: 500px;
-            background: #2a2a2a;
-            bottom: -100px; right: -100px;
-            animation-delay: -5s;
-        }
+        .orb-1 { width: 400px; height: 400px; background: #2a2a2a; top: -100px; left: -100px; }
+        .orb-2 { width: 500px; height: 500px; background: #1a1a1a; bottom: -100px; right: -100px; animation-delay: -5s; }
 
         @keyframes floatMove {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* --- 主要动画 --- */
+        /* --- 动画类定义 --- */
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 第一屏 --- */
+        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -108,28 +132,25 @@
             position: relative;
         }
 
-        /* 头像 */
         .avatar-container {
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             margin-bottom: 25px;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, #fff, #333); /* 边框渐变 */
+            background: linear-gradient(135deg, #fff, #333);
             animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            opacity: 0; /* 初始隐藏 */
+            opacity: 0;
+            z-index: 10;
         }
 
         .avatar-img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
             background-color: #111;
             border: 4px solid var(--bg-color);
         }
 
-        /* 名字 */
         .hero-title {
             font-size: 3.5rem;
             font-weight: 800;
@@ -140,9 +161,9 @@
             -webkit-text-fill-color: transparent;
             opacity: 0;
             animation: slideUpFade 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            z-index: 10;
         }
 
-        /* 介绍 */
         .hero-desc {
             font-size: 1.1rem;
             color: var(--text-sub);
@@ -150,44 +171,28 @@
             font-weight: 300;
             opacity: 0;
             animation: slideUpFade 0.8s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            z-index: 10;
         }
 
-        /* 社交链接容器 */
         .social-grid {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;
             opacity: 0;
             animation: slideUpFade 0.8s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            z-index: 10;
         }
 
-        /* 社交按钮样式 */
         .social-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            display: flex; align-items: center; gap: 10px;
             padding: 8px 20px 8px 12px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(0, 0, 0, 0.4); /* 加深背景，突出文字 */
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
 
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: transparent;
-        }
-
-        .social-text {
-            font-size: 0.9rem;
-            color: #ccc;
-            font-weight: 500;
-        }
+        .social-icon { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+        .social-text { font-size: 0.9rem; color: #ccc; font-weight: 500; }
 
         .social-item:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -195,18 +200,12 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        
-        .social-item:hover .social-text {
-            color: #fff;
-        }
+        .social-item:hover .social-text { color: #fff; }
 
-        /* 下滑箭头 */
         .scroll-hint {
-            position: absolute;
-            bottom: 30px;
-            color: #444;
-            animation: bounce 2s infinite;
-            font-size: 1.5rem;
+            position: absolute; bottom: 30px; color: #444;
+            animation: bounce 2s infinite; font-size: 1.5rem;
+            z-index: 10;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
@@ -214,137 +213,58 @@
             60% {transform: translateY(-5px);}
         }
 
-        /* --- 第二屏：作品展示 --- */
+        /* --- Project Section --- */
         .project-section {
             min-height: 100vh;
             padding: 80px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to top, #000, transparent); /* 底部渐变黑 */
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: linear-gradient(to top, #000, transparent);
+            position: relative;
+            z-index: 5; /* 盖住 Canvas */
         }
 
-        .section-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #555;
-            margin-bottom: 60px;
-        }
+        .section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: #555; margin-bottom: 60px; }
 
         .project-card {
-            width: 100%;
-            max-width: 900px;
-            background: #0f0f0f;
+            width: 100%; max-width: 900px;
+            background: rgba(15, 15, 15, 0.8);
             border: 1px solid #222;
             border-radius: 24px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
             transition: all 0.4s ease;
             cursor: pointer;
-            position: relative;
+            backdrop-filter: blur(10px); /* 毛玻璃 */
         }
 
-        @media (min-width: 768px) {
-            .project-card { flex-direction: row; height: 420px; }
-        }
+        @media (min-width: 768px) { .project-card { flex-direction: row; height: 420px; } }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-        }
+        .project-card:hover { transform: translateY(-5px); border-color: #444; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
 
-        .card-visual {
-            flex: 1.6;
-            background: #1a1a1a;
-            position: relative;
-            overflow: hidden;
-        }
+        .card-visual { flex: 1.6; background: #1a1a1a; position: relative; overflow: hidden; }
+        .card-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.4s, transform 0.6s; }
+        .project-card:hover .card-visual img { opacity: 1; transform: scale(1.05); }
 
-        .card-visual img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-            transition: opacity 0.4s, transform 0.6s;
-        }
-
-        .project-card:hover .card-visual img {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        .card-info {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border: 1px solid #333;
-            border-radius: 4px;
-            color: #888;
-            margin-bottom: 20px;
-            width: fit-content;
-        }
-
-        .card-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .card-desc {
-            color: #888;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        .link-arrow {
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .link-arrow span {
-            transition: transform 0.3s;
-        }
+        .card-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; z-index: 2; }
+        .tag { display: inline-block; font-size: 0.75rem; padding: 4px 10px; border: 1px solid #333; border-radius: 4px; color: #888; margin-bottom: 20px; width: fit-content; }
+        .card-title { font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .card-desc { color: #888; font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px; }
+        .link-arrow { color: #fff; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+        .link-arrow span { transition: transform 0.3s; }
+        .project-card:hover .link-arrow span { transform: translateX(5px); }
         
-        .project-card:hover .link-arrow span {
-            transform: translateX(5px);
-        }
-        
-        /* ---  手机端适配  --- */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.2rem; 
-                line-height: 1.2;
-            }
-            .hero-desc {
-                font-size: 0.95rem;
-                padding: 0 15px;
-            }
+            .hero-title { font-size: 2.2rem; line-height: 1.2; }
+            .hero-desc { font-size: 0.95rem; padding: 0 15px; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- 动态背景层 -->
+    <!-- 1. 汉字雨 Canvas -->
+    <canvas id="hanziRain"></canvas>
+
+    <!-- 2. 光斑背景和网格 -->
     <div class="background-fx">
         <div class="grid-overlay"></div>
         <div class="glow-orb orb-1"></div>
@@ -353,7 +273,6 @@
 
     <!-- 第一屏 -->
     <header class="hero">
-        <!-- 头像区域 -->
         <div class="avatar-container">
             <img src="avatar.jpg" alt="Avatar" class="avatar-img">
         </div>
@@ -361,33 +280,23 @@
         <h1 class="hero-title">AdoreLowen</h1>
         <p class="hero-desc">Otomader & AE Script/Plugin Developer</p>
 
-        <!-- 社交链接 -->
         <div class="social-grid">
-            
-            <!-- Bilibili -->
             <a href="https://space.bilibili.com/86455594" target="_blank" class="social-item">
                 <img src="icon-bilibili.png" alt="B" class="social-icon">
                 <span class="social-text">Bilibili</span>
             </a>
-
-            <!-- Niconico -->
             <a href="https://www.nicovideo.jp/user/127828678" target="_blank" class="social-item">
                 <img src="icon-niconico.png" alt="N" class="social-icon">
                 <span class="social-text">Niconico</span>
             </a>
-
-            <!-- Twitter -->
             <a href="https://x.com/AdoreLowen" target="_blank" class="social-item">
                 <img src="icon-twitter.png" alt="T" class="social-icon">
                 <span class="social-text">Twitter</span>
             </a>
-
-            <!-- YouTube -->
             <a href="https://youtube.com/@AdoreLowen" target="_blank" class="social-item">
                 <img src="icon-youtube.png" alt="Y" class="social-icon">
                 <span class="social-text">YouTube</span>
             </a>
-
         </div>
 
         <div class="scroll-hint">↓</div>
@@ -397,8 +306,7 @@
     <main class="project-section">
         <div class="section-label">Latest Project</div>
 
-        <!-- 插件卡片 -->
-        <article class="project-card" onclick="window.location.href='#'"> <!-- 以后把 # 换成详情页链接 -->
+        <article class="project-card" onclick="window.location.href='#'">
             <div class="card-visual">
                 <img src="alstroke-cover.jpg" alt="ALStroke Interface">
             </div>
@@ -414,5 +322,86 @@
         </article>
     </main>
 
+    <!-- 3. 汉字雨 -->
+    <script>
+        const canvas = document.getElementById('hanziRain');
+        const ctx = canvas.getContext('2d');
+
+        // 设置 Canvas 尺寸
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // --- 配置区域 ---
+        
+        // 1. 字体池：包含 CSS 中定义的古文字体和默认字体
+        const fontFamilies = [
+            'OracleFont',   // 甲骨
+            'BronzeFont',   // 金文
+            'SealFont',     // 小篆
+            'ClericalFont', // 隶书
+            'RegularFont',  // 楷书
+        ];
+        
+        // 2. 字符池：
+        const chars = '天地玄黄宇宙洪荒日月盈昃辰宿列张寒来暑往秋收冬藏闰余成岁律吕调阳云腾致雨露结为霜金生丽水玉出昆冈剑号巨阙珠称夜光果珍李柰菜重芥姜海咸河淡鳞潜羽翔龙师火帝鸟官人皇始制文字乃服衣裳推位让国有虞陶唐';
+        const charArray = chars.split('');
+
+        // 3. 参数设置
+        const fontSize = 20; 
+        let columns = Math.floor(canvas.width / fontSize); 
+        const drops = []; 
+
+        // 初始化 drops
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100; // 随机初始高度，让它们错落下落
+        }
+
+        // --- 绘制函数 ---
+        function draw() {
+            // 1. 拖尾效果
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.08)'; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. 文字样式
+            ctx.fillStyle = 'rgba(180, 180, 180, 0.6)'; 
+
+            // 3. 遍历每一列进行绘制
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                const randomFont = fontFamilies[Math.floor(Math.random() * fontFamilies.length)];
+                
+                ctx.font = `${fontSize}px "${randomFont}"`;
+
+                // 绘制文字
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // 4. 更新下落位置
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                    drops[i] = 0;
+                }
+
+                // y 坐标向下移动一格
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 40);
+
+        // 重新计算列数（当窗口大小改变时）
+        window.addEventListener('resize', () => {
+            const oldColumns = columns;
+            columns = Math.floor(canvas.width / fontSize);
+            if (columns > oldColumns) {
+                for (let i = oldColumns; i < columns; i++) {
+                    drops[i] = Math.random() * -100;
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>
