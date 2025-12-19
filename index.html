@@ -390,8 +390,7 @@
         }
 
     // --- 粒子类 ---
-    class CharParticle {
-        // 传入 logicalWidth
+class CharParticle {
         constructor(logicalWidth, logicalHeight, isInitial = false) {
             this.w = logicalWidth;
             this.h = logicalHeight;
@@ -402,7 +401,23 @@
             this.x = Math.random() * this.w;
             this.y = isInitial ? Math.random() * this.h : -40;
             
-            this.baseSpeed = 1.0 + Math.random() * 1.5; 
+            // 1. 生成随机速度
+            const minSpeed = 1.0;
+            const maxSpeed = 2.5;
+            this.baseSpeed = minSpeed + Math.random() * (maxSpeed - minSpeed); 
+
+            // 2. 根据速度计算模糊度
+            const speedRatio = (this.baseSpeed - minSpeed) / (maxSpeed - minSpeed);
+            
+            // 设定最大模糊像素
+            this.blur = (1 - speedRatio) * 3; 
+
+            // 3. 让速度慢（远）的字也稍微小一点，3D感更强
+            if (isMobile()) {
+                this.fontSize = 10 + speedRatio * 8;
+            } else {
+                this.fontSize = 14 + speedRatio * 16;
+            }
 
             this.angle = Math.random() * 360 * (Math.PI / 180);
             this.rotationSpeed = 0.02;
@@ -412,12 +427,6 @@
 
             this.text = charArray[Math.floor(Math.random() * charArray.length)];
             this.font = fontFamilies[Math.floor(Math.random() * fontFamilies.length)];
-            
-            if (isMobile()) {
-                this.fontSize = 10 + Math.random() * 8;
-            } else {
-                this.fontSize = 16 + Math.random() * 14;
-            }
         }
 
         update(timeFactor) {
@@ -433,11 +442,18 @@
             ctx.save();
             ctx.translate(this.x, this.y);
             ctx.rotate(this.angle);
+            
+            // 应用滤镜。只有当模糊度大于 0.5 时才应用，节省性能
+            if (this.blur > 0.5) {
+                ctx.filter = `blur(${this.blur}px)`;
+            }
+
             ctx.font = `${this.fontSize}px "${this.font}"`;
             ctx.fillStyle = `rgba(200, 200, 200, ${this.opacity})`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(this.text, 0, 0);
+            
             ctx.restore();
         }
     }
