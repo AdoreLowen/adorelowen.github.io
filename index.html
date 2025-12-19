@@ -37,12 +37,15 @@
 
         a { text-decoration: none; color: inherit; }
 
+        @keyframes rainFadeIn { to { opacity: 1; } }
         #rain-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             pointer-events: none;
             overflow: hidden;
+            opacity: 0;
+            animation: rainFadeIn 1s 1s forwards;
         }
 
         .rain-layer {
@@ -118,7 +121,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 0;
-            animation: slideUpFade .8s .2s cubic-bezier(.2, .8, .2, 1) forwards;
+            animation: slideUpFade .8s .3s cubic-bezier(.2, .8, .2, 1) forwards;
             z-index: 10;
         }
 
@@ -128,14 +131,14 @@
             margin-bottom: 40px;
             font-weight: 300;
             opacity: 0;
-            animation: slideUpFade .8s .3s cubic-bezier(.2, .8, .2, 1) forwards;
+            animation: slideUpFade .8s .5s cubic-bezier(.2, .8, .2, 1) forwards;
             z-index: 10;
         }
 
         .social-grid {
             display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;
             opacity: 0;
-            animation: slideUpFade .8s .4s cubic-bezier(.2, .8, .2, 1) forwards;
+            animation: slideUpFade .8s .7s cubic-bezier(.2, .8, .2, 1) forwards;
             z-index: 10;
         }
 
