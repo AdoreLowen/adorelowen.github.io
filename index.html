@@ -1,21 +1,283 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>AL的网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL | Oto-MADer & Developer</title>
     <style>
+        /* 全局重置与基础设定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            background-color: #0a0a0a; /* 极深灰，比纯黑更有质感 */
+            color: #f0f0f0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 经典的无衬线字体 */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* 动画定义：致敬AE的关键帧 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 第一屏：个人简介区 */
+        .hero-section {
+            height: 100vh; /* 占满全屏 */
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-            font-size: 40px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
         }
+
+        .hero-content {
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; /* 缓动动画 */
+        }
+
+        .name {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #888); /* 文字渐变 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tags {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .tags span {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        /* 社交链接按钮 */
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 10px 25px;
+            border: 1px solid #333;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #aaa;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-btn:hover {
+            border-color: #fff;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        /* 下滑提示箭头 */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            animation: fadeInUp 1.5s infinite alternate;
+            opacity: 0.5;
+            font-size: 1.5rem;
+        }
+
+        /* 第二屏：作品展示区 */
+        .project-section {
+            min-height: 100vh;
+            background-color: #050505; /* 稍微深一点，区分板块 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #444;
+            margin-bottom: 50px;
+        }
+
+        /* 插件卡片 */
+        .project-card {
+            width: 100%;
+            max-width: 900px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column; /* 手机端默认垂直排列 */
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        @media (min-width: 768px) {
+            .project-card {
+                flex-direction: row; /* 电脑端水平排列 */
+                height: 400px;
+            }
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            border-color: #444;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* 图片区域 */
+        .card-image {
+            flex: 1.5;
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保证图片填满且不变形 */
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .card-image img {
+            opacity: 1;
+        }
+
+        /* 占位图文字（如果没有图片时显示） */
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* 文字区域 */
+        .card-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .project-desc {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .arrow-link {
+            font-size: 1.2rem;
+            color: #fff;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .arrow-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
     </style>
 </head>
 <body>
-    AL的网站
+
+    <!-- 第一屏：Hero -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="name">AL</div>
+            <div class="tags">
+                <span>Oto-MADer</span> / <span>AE Script Dev</span>
+            </div>
+            
+            <div class="social-links">
+                <!-- 填入你的链接 -->
+                <a href="https://space.bilibili.com/86455594" target="_blank" class="social-btn">Bilibili</a>
+                <a href="https://x.com/AdoreLowen" target="_blank" class="social-btn">Twitter</a>
+                <a href="https://www.youtube.com/@AdoreLowen" target="_blank" class="social-btn">YouTube</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">↓</div>
+    </header>
+
+    <!-- 第二屏：作品展示 -->
+    <main class="project-section">
+        <div class="section-title">Featured Work</div>
+
+        <!-- 点击卡片跳转到详情页 -->
+        <article class="project-card" onclick="window.location.href='这里填详情页链接.html'">
+            <div class="card-image">
+                <!-- 填入你的图片链接 -->
+                <img src="这里填你的图片链接.jpg" alt="ALStroke Preview">
+                <!-- 如果暂时没图片，下面这行字会显示 -->
+                <div class="placeholder-text">Preview Image</div> 
+            </div>
+            <div class="card-content">
+                <div class="project-tag">After Effects Script</div>
+                <h2 class="project-title">ALStroke</h2>
+                <p class="project-desc">
+                    这是一款为高效而生的描边增强脚本。
+                    <br>
+                    极简交互，一键生成流畅线条动画。
+                </p>
+                <div class="arrow-link">View Details →</div>
+            </div>
+        </article>
+    </main>
+
 </body>
 </html>
