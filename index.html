@@ -25,7 +25,7 @@
 
         /* --- 全局设置 --- */
         :root {
-            --bg-color: #101010;
+            --bg-color: #080808;
             --text-main: #ffffff;
             --text-sub: #888888;
         }
@@ -91,18 +91,6 @@
             mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
             -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
         }
-
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px); 
-            opacity: 0.3; 
-            will-change: transform;
-            animation: floatMove 20s infinite alternate ease-in-out;
-        }
-
-        .orb-1 { width: 400px; height: 400px; background: #2a2a2a; top: -100px; left: -100px; }
-        .orb-2 { width: 500px; height: 500px; background: #1a1a1a; bottom: -100px; right: -100px; animation-delay: -5s; }
 
         @keyframes floatMove {
             0% { transform: translate3d(0, 0, 0) scale(1); }
@@ -268,8 +256,6 @@
     <!-- 2. 光斑背景和网格 -->
     <div class="background-fx">
         <div class="grid-overlay"></div>
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
     </div>
 
     <!-- 第一屏 -->
