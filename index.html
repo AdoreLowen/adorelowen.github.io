@@ -25,7 +25,7 @@
 
         /* --- 全局设置 --- */
         :root {
-            --bg-color: #050505;
+            --bg-color: #101010;
             --text-main: #ffffff;
             --text-sub: #888888;
         }
@@ -58,7 +58,7 @@
 
         /* 后景层：慢速，模糊重 */
         #layer-slow {
-            filter: blur(1.5px);
+            filter: blur(1.2px);
             opacity: 0.5;
         }
         /* 中景层：中速，模糊轻 */
@@ -392,11 +392,11 @@
             if (speedRatio < 0.33) {
                 this.layerIndex = 0; // Slow layer (CSS Blur: 4px)
                 this.opacity = 0.3 + Math.random() * 0.2;
-                this.fontSize = isMobile() ? 10 : 12; // 远景字小
+                this.fontSize = isMobile() ? 14 : 18; // 远景字小
             } else if (speedRatio < 0.66) {
                 this.layerIndex = 1; // Mid layer (CSS Blur: 1.5px)
                 this.opacity = 0.5 + Math.random() * 0.3;
-                this.fontSize = isMobile() ? 16 : 20;
+                this.fontSize = isMobile() ? 18 : 23;
             } else {
                 this.layerIndex = 2; // Fast layer (No Blur)
                 this.opacity = 0.8 + Math.random() * 0.2;
