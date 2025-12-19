@@ -309,6 +309,20 @@
         .project-card:hover .link-arrow span {
             transform: translateX(5px);
         }
+        /* --- 📱 手机端适配 (Media Query) --- */
+        @media (max-width: 768px) {
+            /* 名字改小 */
+            .hero-title {
+                font-size: 2.2rem; /* 原来是 3.5rem，这里改小 */
+                line-height: 1.2;  /* 防止多行时行距太挤 */
+            }
+
+            /* 介绍文字改小并增加左右边距 */
+            .hero-desc {
+                font-size: 0.95rem;
+                padding: 0 15px; /* 防止文字贴着手机屏幕边缘 */
+            }
+        }
 
     </style>
 </head>
@@ -330,7 +344,7 @@
         </div>
 
         <h1 class="hero-title">AdoreLowen</h1>
-        <p class="hero-desc">Oto-MADer / AE Script Developer</p>
+        <p class="hero-desc">Otomader & AE Script/Plugin Developer</p>
 
         <!-- 社交链接 -->
         <div class="social-grid">
@@ -338,28 +352,28 @@
             <!-- Bilibili -->
             <a href="https://space.bilibili.com/86455594" target="_blank" class="social-item">
                 <!-- 替换 src="icon-bilibili.jpg" -->
-                <img src="icon-bilibili.jpg" alt="B" class="social-icon">
+                <img src="icon-bilibili.png" alt="B" class="social-icon">
                 <span class="social-text">Bilibili</span>
             </a>
 
             <!-- Niconico -->
             <a href="https://www.nicovideo.jp/user/127828678" target="_blank" class="social-item">
                 <!-- 替换 src="icon-niconico.jpg" -->
-                <img src="icon-niconico.jpg" alt="N" class="social-icon">
+                <img src="icon-niconico.png" alt="N" class="social-icon">
                 <span class="social-text">Niconico</span>
             </a>
 
             <!-- Twitter -->
             <a href="https://x.com/AdoreLowen" target="_blank" class="social-item">
                 <!-- 替换 src="icon-twitter.jpg" -->
-                <img src="icon-twitter.jpg" alt="T" class="social-icon">
+                <img src="icon-twitter.png" alt="T" class="social-icon">
                 <span class="social-text">Twitter</span>
             </a>
 
             <!-- YouTube -->
             <a href="https://youtube.com/@AdoreLowen" target="_blank" class="social-item">
                 <!-- 替换 src="icon-youtube.jpg" -->
-                <img src="icon-youtube.jpg" alt="Y" class="social-icon">
+                <img src="icon-youtube.png" alt="Y" class="social-icon">
                 <span class="social-text">YouTube</span>
             </a>
 
@@ -382,10 +396,10 @@
                 <div class="tag">AE Script</div>
                 <h2 class="card-title">ALStroke</h2>
                 <p class="card-desc">
-                    专为音MAD与Motion Graphics设计的描边动效增强工具。<br>
-                    极简面板，一键生成流畅的路径动画。
+                    一款全新的 AE 描边插件。<br>
+                    支持运动模糊、多层叠加、渐变样式等多种功能。
                 </p>
-                <div class="link-arrow">View Project <span>→</span></div>
+                <div class="link-arrow">查看详情 <span>→</span></div>
             </div>
         </article>
     </main>
