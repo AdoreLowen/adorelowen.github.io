@@ -97,19 +97,23 @@
             width: 120px; height: 120px;
             margin-bottom: 25px;
             border-radius: 50%;
-            padding: 3px;
+            padding: 3px; 
             background: linear-gradient(135deg, #fff, #333);
             animation: slideUpFade .8s cubic-bezier(.2, .8, .2, 1) forwards;
             opacity: 0;
             z-index: 10;
+            display: flex;
+            overflow: hidden; 
         }
-
+        
         .avatar-img {
             width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            background-color: #111;
+            background-color: var(--bg-color);
             border: 4px solid var(--bg-color);
+            box-shadow: 0 0 0 1px var(--bg-color); 
+            transform: translateZ(0);
         }
 
         .hero-title {
