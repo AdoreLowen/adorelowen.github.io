@@ -59,12 +59,12 @@
         /* 后景层：慢速，模糊重 */
         #layer-slow {
             filter: blur(4px);
-            opacity: 0.5;
+            opacity: 0.2;
         }
         /* 中景层：中速，模糊轻 */
         #layer-mid {
             filter: blur(1.5px);
-            opacity: 0.75;
+            opacity: 0.1;
         }
         /* 前景层：快速，清晰 */
         #layer-fast {
@@ -396,11 +396,11 @@
             } else if (speedRatio < 0.66) {
                 this.layerIndex = 1; // Mid layer (CSS Blur: 1.5px)
                 this.opacity = 0.5 + Math.random() * 0.3;
-                this.fontSize = isMobile() ? 12 : 16;
+                this.fontSize = isMobile() ? 16 : 20;
             } else {
                 this.layerIndex = 2; // Fast layer (No Blur)
                 this.opacity = 0.8 + Math.random() * 0.2;
-                this.fontSize = isMobile() ? 14 : 20; // 近景字大
+                this.fontSize = isMobile() ? 22 : 28; // 近景字大
             }
 
             this.angle = Math.random() * 360 * (Math.PI / 180);
@@ -442,7 +442,7 @@
     const particles = [];
     function initParticles() {
         particles.length = 0;
-        const count = isMobile() ? 30 : 70; 
+        const count = isMobile() ? 50 : 100; 
         for (let i = 0; i < count; i++) {
             particles.push(new CharParticle(window.innerWidth, window.innerHeight, true));
         }
