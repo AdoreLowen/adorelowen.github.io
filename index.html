@@ -6,28 +6,23 @@
     <title>AdoreLowen | Home Page</title>
     <meta name="description" content="AdoreLowen's Home Page. Otomader & AE Script/Plugin Developer">
     <meta name="keywords" content="AdoreLowen, 音MAD, Otomad, After Effects, AE, Script, Plugin, Dev">
-    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adorelowen.github.io/">
     <meta property="og:title" content="AdoreLowen | Otomader & AE Script/Plugin Developer">
     <meta property="og:description" content="Click to view my personal profile, Otomad portfolio, and AE tool development updates.">
     <meta property="og:image" content="https://adorelowen.github.io/og-image.jpg">
-
     <link rel="icon" href="favicon.png" type="image/png">
-    
-    <style> 
-        /* --- 字体定义 --- */
+    <style>
         @font-face { font-family: 'OracleFont'; src: url('fonts/dehinted-subset-FZJIAGW.woff2') format('woff2'); font-display: swap; }
         @font-face { font-family: 'BronzeFont'; src: url('fonts/dehinted-subset-0a0f371083874b4bb68f22b4a845834c.woff2') format('woff2'); font-display: swap; }
         @font-face { font-family: 'SealFont'; src: url('fonts/dehinted-subset-HYYueXiChuKai-F.woff2') format('woff2'); font-display: swap; }
         @font-face { font-family: 'ClericalFont'; src: url('fonts/dehinted-subset-Undefined.woff2') format('woff2'); font-display: swap; }
         @font-face { font-family: 'RegularFont'; src: url('fonts/dehinted-subset-HYf2gf.woff2') format('woff2'); font-display: swap; }
 
-        /* --- 全局设置 --- */
         :root {
-            --bg-color: #090909;
-            --text-main: #ffffff;
-            --text-sub: #888888;
+            --bg-color: #101010;
+            --text-main: #fff;
+            --text-sub: #888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,7 +37,6 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* --- 动态背景层 --- */
         #rain-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -56,21 +50,9 @@
             top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* 后景层：慢速，模糊重 */
-        #layer-slow {
-            filter: blur(1.2px);
-            opacity: 0.5;
-        }
-        /* 中景层：中速，模糊轻 */
-        #layer-mid {
-            filter: blur(0.7px);
-            opacity: 0.8;
-        }
-        /* 前景层：快速，清晰 */
-        #layer-fast {
-            filter: none;
-            opacity: 1;
-        }
+        #layer-slow { filter: blur(1.2px); opacity: .5; }
+        #layer-mid { filter: blur(.7px); opacity: .8; }
+        #layer-fast { filter: none; opacity: 1; }
 
         .background-fx {
             position: fixed;
@@ -85,16 +67,11 @@
             position: absolute;
             width: 100%; height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
             background-size: 50px 50px;
-            mask-image: radial-gradient(circle at center, black 30%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 100%);
-        }
-
-        @keyframes floatMove {
-            0% { transform: translate3d(0, 0, 0) scale(1); }
-            100% { transform: translate3d(50px, 50px, 0) scale(1.1); }
+            mask-image: radial-gradient(circle at center, #000 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, #000 30%, transparent 100%);
         }
 
         @keyframes slideUpFade {
@@ -102,7 +79,6 @@
             to { opacity: 1; transform: translate3d(0, 0, 0); }
         }
 
-        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -120,7 +96,7 @@
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, #fff, #333);
-            animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: slideUpFade .8s cubic-bezier(.2, .8, .2, 1) forwards;
             opacity: 0;
             z-index: 10;
         }
@@ -142,7 +118,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 0;
-            animation: slideUpFade 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: slideUpFade .8s .2s cubic-bezier(.2, .8, .2, 1) forwards;
             z-index: 10;
         }
 
@@ -152,36 +128,36 @@
             margin-bottom: 40px;
             font-weight: 300;
             opacity: 0;
-            animation: slideUpFade 0.8s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: slideUpFade .8s .3s cubic-bezier(.2, .8, .2, 1) forwards;
             z-index: 10;
         }
 
         .social-grid {
             display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;
             opacity: 0;
-            animation: slideUpFade 0.8s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: slideUpFade .8s .4s cubic-bezier(.2, .8, .2, 1) forwards;
             z-index: 10;
         }
 
         .social-item {
             display: flex; align-items: center; gap: 10px;
             padding: 8px 20px 8px 12px;
-            background: rgba(10, 10, 10, 0.4); 
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 10, 10, .4); 
+            border: 1px solid rgba(255, 255, 255, .1);
             border-radius: 50px;
-            transition: all 0.3s ease;
+            transition: all .3s ease;
             backdrop-filter: blur(10px);
             transform: translateZ(0); 
         }
 
         .social-icon { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
-        .social-text { font-size: 0.9rem; color: #ccc; font-weight: 500; }
+        .social-text { font-size: .9rem; color: #ccc; font-weight: 500; }
 
         .social-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .4);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,.5);
         }
         .social-item:hover .social-text { color: #fff; }
 
@@ -190,13 +166,13 @@
             animation: bounce 2s infinite; font-size: 1.5rem;
             z-index: 10;
         }
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        /* --- Project Section --- */
         .project-section {
             min-height: 100vh;
             padding: 80px 20px;
@@ -206,16 +182,16 @@
             z-index: 5;
         }
 
-        .section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: #555; margin-bottom: 60px; }
+        .section-label { font-size: .8rem; text-transform: uppercase; letter-spacing: 4px; color: #555; margin-bottom: 60px; }
 
         .project-card {
             width: 100%; max-width: 900px;
-            background: rgba(15, 15, 15, 0.8);
+            background: rgba(15, 15, 15, .8);
             border: 1px solid #222;
             border-radius: 24px;
             overflow: hidden;
             display: flex; flex-direction: column;
-            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
             cursor: pointer;
             backdrop-filter: blur(10px);
             transform: translateZ(0); 
@@ -224,41 +200,37 @@
 
         @media (min-width: 768px) { .project-card { flex-direction: row; height: 420px; } }
 
-        .project-card:hover { transform: translate3d(0, -5px, 0); border-color: #444; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+        .project-card:hover { transform: translate3d(0, -5px, 0); border-color: #444; box-shadow: 0 30px 60px rgba(0,0,0,.6); }
 
         .card-visual { flex: 1.6; background: #1a1a1a; position: relative; overflow: hidden; }
-        .card-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.4s, transform 0.6s; will-change: transform; }
+        .card-visual img { width: 100%; height: 100%; object-fit: cover; opacity: .7; transition: opacity .4s, transform .6s; will-change: transform; }
         .project-card:hover .card-visual img { opacity: 1; transform: scale(1.05); }
 
         .card-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; z-index: 2; }
-        .tag { display: inline-block; font-size: 0.75rem; padding: 4px 10px; border: 1px solid #333; border-radius: 4px; color: #888; margin-bottom: 20px; width: fit-content; }
+        .tag { display: inline-block; font-size: .75rem; padding: 4px 10px; border: 1px solid #333; border-radius: 4px; color: #888; margin-bottom: 20px; width: fit-content; }
         .card-title { font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
-        .card-desc { color: #888; font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px; }
-        .link-arrow { color: #fff; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
-        .link-arrow span { transition: transform 0.3s; }
+        .card-desc { color: #888; font-size: .95rem; line-height: 1.7; margin-bottom: 30px; }
+        .link-arrow { color: #fff; font-weight: 600; font-size: .9rem; display: flex; align-items: center; gap: 5px; }
+        .link-arrow span { transition: transform .3s; }
         .project-card:hover .link-arrow span { transform: translateX(5px); }
         
         @media (max-width: 768px) {
             .hero-title { font-size: 2.2rem; line-height: 1.2; }
-            .hero-desc { font-size: 0.95rem; padding: 0 15px; }
+            .hero-desc { font-size: .95rem; padding: 0 15px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- 1. 汉字雨 -->
     <div id="rain-container">
         <canvas id="layer-slow" class="rain-layer"></canvas>
         <canvas id="layer-mid" class="rain-layer"></canvas>
         <canvas id="layer-fast" class="rain-layer"></canvas>
     </div>
 
-    <!-- 2. 光斑背景和网格 -->
     <div class="background-fx">
         <div class="grid-overlay"></div>
     </div>
 
-    <!-- 第一屏 -->
     <header class="hero">
         <div class="avatar-container">
             <img src="avatar.jpg" alt="Avatar" class="avatar-img">
@@ -289,7 +261,6 @@
         <div class="scroll-hint">↓</div>
     </header>
 
-    <!-- 第二屏 -->
     <main class="project-section">
         <div class="section-label">Latest Project</div>
 
@@ -310,23 +281,23 @@
     </main>
 
 <script>
-    // 获取三层 Canvas
     const layers = [
-        document.getElementById('layer-slow'), // 0: 慢速/模糊
-        document.getElementById('layer-mid'),  // 1: 中速/微模糊
-        document.getElementById('layer-fast')  // 2: 快速/清晰
+        document.getElementById('layer-slow'),
+        document.getElementById('layer-mid'),
+        document.getElementById('layer-fast')
     ];
-    
-    // 初始化上下文
     const contexts = layers.map(c => c.getContext('2d', { alpha: true }));
-
     let lastWidth = window.innerWidth;
     const dpr = window.devicePixelRatio || 1;
+    let resizeTimeout;
+
+    const fontFamilies = ['OracleFont', 'BronzeFont', 'SealFont', 'ClericalFont', 'RegularFont'];
+    const chars = '老退蠃逆堇耋逋逐瀑通速蠢逢耳逸栽逾鼎血行衍桐桑恒遘恙塞衣遣硪火遭息衰灾聿梁袁肆肇肉墉炎邑邕肘肩肱育胄烈郊棋背棘裘食惠壬郭森磬能复椎夏夕鄙焚夙多夜大天夫央焱夷夸示祀允元襄兄兆先光酉腋克免酌配祈奏酒契兔兕奔祖祗楚奚祝神奠祠入八公六兮祭腰共女兵其具典腹兹好西要如覃妃榆冉熊妊册再妍膏冒冕首冗馘香膝熟冠妣妥冬熹膺妹妻禽妾禾臀槁秀采秉懋秋重燎量角姓委燕姜姝几凡臣解秦臧自秫臬臭燮姬至出函臾言刀舂刁刃分戈刈戊戌戍戎舌成我戒舍戕或刖娘戚初舞舟删娠娥利截爪般别娩爰戴爵父户娶刺爻稼爽稽爿穆剌才橐穗牛牝牟牡牢婢牧物良割扶艾承艿檀突抑芒劓折媚力芟骨助犬抱媳抿拇立狐苑高苞竟髟若童髦狩髭拯拱勹竹狼竽勿匆嬉匕化北匚匝欠次茨笮振鬯猱鬲猷鬼匿十千卅升午子卒孕南孚孛卜占止正此步武卣季卩卯印孰即捷死孽卿宀宁它宅率授玉殊王守安宋宓宕箕宗官厚定宛宜原探宣室厥莫宫宰害宵家殷去莽宿叁寅寇又及毋友母反每珏寐寒毓比叔取受叟口古寤叩召寮可史右援司各射合吉尊簋同名氏吏萑民向搔气吕小少尚君簟琮启就水谷永吹尸尹尻尾尿求豆告屎豕豚汜汝瑟象履周豪葬屮屯山米豹呼命沁沈沉咎咒沓貔蒙沙璞璧河岳咸粼蒿品泉泊蓑擒注唐蔑洗甘洚洛生蔡索用甫唬唯田洱洲由攴攵甲申攸改洹男派甾畀商畋敏畏敖教畜敝敢散赤敦走喁涂文涉疋涎疑疒斗薛喜斤斧薪新涵方趾疾旁旅嗅旋痍族川州巡既巢日旦工旨左巫旬淮深己已巳巴一丁市昃七万嘉三踊上下不明昏丐丑昌易昔且丕丘丙帚帛阜帝丞星春温中丰昱阱防丹主丽帽乃湄乇之虍虎乎虐乍降噎乘乙九虞乞陟晨虫干乳晴年并晶陶陷虹虺智癸登白百幼幽鹿皆皇庇麇床事二麋于云麓五井亘庚亟麟亡亢溢亥亦度亨享京身暮皮庭暴庶康庸隹人溽皿雀盂仄集蛇雇雉今介益盍从雍黍黑蛛四囟因盟令以雨雩雪目曰困曲更直延雷相曹建固任曼雹曾替蜀企盾囿省廾廿震圉月弋有朊朋伊服眉伏伐休霍朕霖弓引眚望鼓朝弗土弘弟鼠弦木在未圭伯霰朱缶霸鼻霾杉坎坐网罔何彖彗彘余作彝杞束蝠非潢面彡潦革罩睫彭置杳杵使往征侃羊律後融羌美析徒羔林得枚供辛羞辟龠御鞭微侯辰羲侵徵瞽达心迅必翌城柏黹俘保俞濞域翟矢知翦柳石念翼追';
+    const charArray = chars.split('');
 
     function resizeCanvas() {
         const w = window.innerWidth;
         const h = window.innerHeight;
-        
         layers.forEach((canvas, i) => {
             canvas.width = w * dpr;
             canvas.height = h * dpr;
@@ -336,12 +307,10 @@
         });
     }
     resizeCanvas();
-    
-    let resizeTimeout;
+
     window.addEventListener('resize', () => {
         if (window.innerWidth === lastWidth) return;
         lastWidth = window.innerWidth;
-        
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             resizeCanvas();
@@ -349,11 +318,7 @@
         }, 200);
     });
 
-    const fontFamilies = ['OracleFont', 'BronzeFont', 'SealFont', 'ClericalFont', 'RegularFont'];
-    const chars = '老退蠃逆堇耋逋逐瀑通速蠢逢耳逸栽逾鼎血行衍桐桑恒遘恙塞衣遣硪火遭息衰灾聿梁袁肆肇肉墉炎邑邕肘肩肱育胄烈郊棋背棘裘食惠壬郭森磬能复椎夏夕鄙焚夙多夜大天夫央焱夷夸示祀允元襄兄兆先光酉腋克免酌配祈奏酒契兔兕奔祖祗楚奚祝神奠祠入八公六兮祭腰共女兵其具典腹兹好西要如覃妃榆冉熊妊册再妍膏冒冕首冗馘香膝熟冠妣妥冬熹膺妹妻禽妾禾臀槁秀采秉懋秋重燎量角姓委燕姜姝几凡臣解秦臧自秫臬臭燮姬至出函臾言刀舂刁刃分戈刈戊戌戍戎舌成我戒舍戕或刖娘戚初舞舟删娠娥利截爪般别娩爰戴爵父户娶刺爻稼爽稽爿穆剌才橐穗牛牝牟牡牢婢牧物良割扶艾承艿檀突抑芒劓折媚力芟骨助犬抱媳抿拇立狐苑高苞竟髟若童髦狩髭拯拱勹竹狼竽勿匆嬉匕化北匚匝欠次茨笮振鬯猱鬲猷鬼匿十千卅升午子卒孕南孚孛卜占止正此步武卣季卩卯印孰即捷死孽卿宀宁它宅率授玉殊王守安宋宓宕箕宗官厚定宛宜原探宣室厥莫宫宰害宵家殷去莽宿叁寅寇又及毋友母反每珏寐寒毓比叔取受叟口古寤叩召寮可史右援司各射合吉尊簋同名氏吏萑民向搔气吕小少尚君簟琮启就水谷永吹尸尹尻尾尿求豆告屎豕豚汜汝瑟象履周豪葬屮屯山米豹呼命沁沈沉咎咒沓貔蒙沙璞璧河岳咸粼蒿品泉泊蓑擒注唐蔑洗甘洚洛生蔡索用甫唬唯田洱洲由攴攵甲申攸改洹男派甾畀商畋敏畏敖教畜敝敢散赤敦走喁涂文涉疋涎疑疒斗薛喜斤斧薪新涵方趾疾旁旅嗅旋痍族川州巡既巢日旦工旨左巫旬淮深己已巳巴一丁市昃七万嘉三踊上下不明昏丐丑昌易昔且丕丘丙帚帛阜帝丞星春温中丰昱阱防丹主丽帽乃湄乇之虍虎乎虐乍降噎乘乙九虞乞陟晨虫干乳晴年并晶陶陷虹虺智癸登白百幼幽鹿皆皇庇麇床事二麋于云麓五井亘庚亟麟亡亢溢亥亦度亨享京身暮皮庭暴庶康庸隹人溽皿雀盂仄集蛇雇雉今介益盍从雍黍黑蛛四囟因盟令以雨雩雪目曰困曲更直延雷相曹建固任曼雹曾替蜀企盾囿省廾廿震圉月弋有朊朋伊服眉伏伐休霍朕霖弓引眚望鼓朝弗土弘弟鼠弦木在未圭伯霰朱缶霸鼻霾杉坎坐网罔何彖彗彘余作彝杞束蝠非潢面彡潦革罩睫彭置杳杵使往征侃羊律後融羌美析徒羔林得枚供辛羞辟龠御鞭微侯辰羲侵徵瞽达心迅必翌城柏黹俘保俞濞域翟矢知翦柳石念翼追';
-    const charArray = chars.split('');
-
-    function isMobile() { return window.innerWidth < 768; }
+    const isMobile = () => window.innerWidth < 768;
 
     class CharParticle {
         constructor(w, h, isInitial) {
@@ -365,28 +330,23 @@
         reset(isInitial) {
             this.x = Math.random() * this.w;
             this.y = isInitial ? Math.random() * this.h : -50;
-            
-            // 速度范围
             const minSpeed = 0.5;
             const maxSpeed = 2.0;
             this.baseSpeed = minSpeed + Math.random() * (maxSpeed - minSpeed); 
 
-            // 根据速度决定层级（越慢越模糊，越快越清晰，模拟景深）
-            const speedRatio = (this.baseSpeed - minSpeed) / (maxSpeed - minSpeed); // 0 ~ 1
-            
-            // 0 = Slow(Blurry), 1 = Mid, 2 = Fast(Sharp)
+            const speedRatio = (this.baseSpeed - minSpeed) / (maxSpeed - minSpeed);
             if (speedRatio < 0.33) {
-                this.layerIndex = 0; // Slow layer (CSS Blur: 4px)
+                this.layerIndex = 0;
                 this.opacity = 0.3 + Math.random() * 0.2;
-                this.fontSize = isMobile() ? 14 : 18; // 远景字小
+                this.fontSize = isMobile() ? 14 : 18;
             } else if (speedRatio < 0.66) {
-                this.layerIndex = 1; // Mid layer (CSS Blur: 1.5px)
+                this.layerIndex = 1;
                 this.opacity = 0.5 + Math.random() * 0.3;
                 this.fontSize = isMobile() ? 18 : 23;
             } else {
-                this.layerIndex = 2; // Fast layer (No Blur)
+                this.layerIndex = 2;
                 this.opacity = 0.8 + Math.random() * 0.2;
-                this.fontSize = isMobile() ? 22 : 28; // 近景字大
+                this.fontSize = isMobile() ? 22 : 28;
             }
 
             this.angle = Math.random() * 360 * (Math.PI / 180);
@@ -398,29 +358,21 @@
         update(timeFactor) {
             this.y += this.baseSpeed * timeFactor;
             this.angle += this.rotationSpeed * timeFactor;
-            
             if (this.y > this.h + 50) {
                 this.reset(false);
             }
         }
 
         draw(ctxs) {
-            // 根据 layerIndex 选择对应的 Context 绘制
             const ctx = ctxs[this.layerIndex];
-            
             ctx.save();
-            const x = this.x | 0; // 坐标取整优化
-            const y = this.y | 0;
-            
-            ctx.translate(x, y);
+            ctx.translate(this.x | 0, this.y | 0);
             ctx.rotate(this.angle);
-            
             ctx.font = `${this.fontSize}px "${this.font}"`;
             ctx.fillStyle = `rgba(200, 200, 200, ${this.opacity})`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(this.text, 0, 0);
-            
             ctx.restore();
         }
     }
@@ -444,22 +396,18 @@
         let timeFactor = deltaTime / 16.67;
         if (timeFactor > 3) timeFactor = 1; 
 
-        // 清除所有层级
         const w = window.innerWidth;
         const h = window.innerHeight;
         contexts.forEach(ctx => ctx.clearRect(0, 0, w, h));
         
-        // 更新并绘制
         particles.forEach(p => {
             p.update(timeFactor);
-            p.draw(contexts); // 传入整个 context 数组
+            p.draw(contexts);
         });
         
         requestAnimationFrame(animate);
     }
-    
     requestAnimationFrame(animate);
-
 </script>
 </body>
 </html>
