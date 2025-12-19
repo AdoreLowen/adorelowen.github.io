@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdoreLowen | Home Page</title>
+    <!-- SEO -->
+    <meta name="description" content="AdoreLowen's Home Page. Otomader & AE Script/Plugin Developer">
+    <meta name="keywords" content="AdoreLowen, 音MAD, Otomad, After Effects, AE, Script, Plugin, Dev">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adorelowen.github.io/">
+    <meta property="og:title" content="AdoreLowen | Otomader & AE Script/Plugin Developer">
+    <meta property="og:description" content="Click to view my personal profile, Otomad portfolio, and AE tool development updates.">
+    <meta property="og:image" content="https://adorelowen.github.io/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AdoreLowen | Otomader & AE Script/Plugin Developer">
+    <meta name="twitter:description" content="Click to view my personal profile, Otomad portfolio, and AE tool development updates.">
+    <meta name="twitter:image" content="https://adorelowen.github.io/og-image.jpg">
+
     <link rel="icon" href="favicon.jpg" type="image/png">
     <style>
         /* --- 全局设置 --- */
@@ -26,7 +43,7 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* --- 动态背景装饰 --- */
+        /* --- 动态背景 --- */
         .background-fx {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -34,7 +51,7 @@
             overflow: hidden;
         }
 
-        /* AE风格网格背景 */
+        /* 网格背景 */
         .grid-overlay {
             position: absolute;
             width: 100%; height: 100%;
@@ -46,7 +63,7 @@
             -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
 
-        /* 浮动的光斑 */
+        /* 浮动光斑 */
         .glow-orb {
             position: absolute;
             border-radius: 50%;
@@ -73,13 +90,13 @@
             100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* --- 核心动画 --- */
+        /* --- 主要动画 --- */
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 第一屏：Hero Section --- */
+        /* --- 第一屏 --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -107,9 +124,9 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            object-fit: cover; /* 确保方形图片被剪裁为圆形 */
-            background-color: #111; /* 图片未加载时的底色 */
-            border: 4px solid var(--bg-color); /* 内圈黑边 */
+            object-fit: cover;
+            background-color: #111;
+            border: 4px solid var(--bg-color);
         }
 
         /* 名字 */
@@ -122,7 +139,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 0;
-            animation: slideUpFade 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; /* 0.2s 延迟 */
+            animation: slideUpFade 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
         /* 介绍 */
@@ -163,7 +180,7 @@
             height: 24px;
             border-radius: 50%;
             object-fit: cover;
-            background: #333; /* 图标占位色 */
+            background: transparent;
         }
 
         .social-text {
@@ -310,18 +327,16 @@
         .project-card:hover .link-arrow span {
             transform: translateX(5px);
         }
-        /* --- 📱 手机端适配 (Media Query) --- */
+        
+        /* ---  手机端适配  --- */
         @media (max-width: 768px) {
-            /* 名字改小 */
             .hero-title {
-                font-size: 2.2rem; /* 原来是 3.5rem，这里改小 */
-                line-height: 1.2;  /* 防止多行时行距太挤 */
+                font-size: 2.2rem; 
+                line-height: 1.2;
             }
-
-            /* 介绍文字改小并增加左右边距 */
             .hero-desc {
                 font-size: 0.95rem;
-                padding: 0 15px; /* 防止文字贴着手机屏幕边缘 */
+                padding: 0 15px;
             }
         }
 
@@ -340,7 +355,6 @@
     <header class="hero">
         <!-- 头像区域 -->
         <div class="avatar-container">
-            <!-- 替换 src="avatar.jpg" 为你的头像文件名 -->
             <img src="avatar.jpg" alt="Avatar" class="avatar-img">
         </div>
 
@@ -352,28 +366,24 @@
             
             <!-- Bilibili -->
             <a href="https://space.bilibili.com/86455594" target="_blank" class="social-item">
-                <!-- 替换 src="icon-bilibili.jpg" -->
                 <img src="icon-bilibili.png" alt="B" class="social-icon">
                 <span class="social-text">Bilibili</span>
             </a>
 
             <!-- Niconico -->
             <a href="https://www.nicovideo.jp/user/127828678" target="_blank" class="social-item">
-                <!-- 替换 src="icon-niconico.jpg" -->
                 <img src="icon-niconico.png" alt="N" class="social-icon">
                 <span class="social-text">Niconico</span>
             </a>
 
             <!-- Twitter -->
             <a href="https://x.com/AdoreLowen" target="_blank" class="social-item">
-                <!-- 替换 src="icon-twitter.jpg" -->
                 <img src="icon-twitter.png" alt="T" class="social-icon">
                 <span class="social-text">Twitter</span>
             </a>
 
             <!-- YouTube -->
             <a href="https://youtube.com/@AdoreLowen" target="_blank" class="social-item">
-                <!-- 替换 src="icon-youtube.jpg" -->
                 <img src="icon-youtube.png" alt="Y" class="social-icon">
                 <span class="social-text">YouTube</span>
             </a>
@@ -390,7 +400,6 @@
         <!-- 插件卡片 -->
         <article class="project-card" onclick="window.location.href='#'"> <!-- 以后把 # 换成详情页链接 -->
             <div class="card-visual">
-                <!-- 替换 src="alstroke-cover.jpg" -->
                 <img src="alstroke-cover.jpg" alt="ALStroke Interface">
             </div>
             <div class="card-info">
