@@ -58,13 +58,13 @@
 
         /* 后景层：慢速，模糊重 */
         #layer-slow {
-            filter: blur(4px);
-            opacity: 0.2;
+            filter: blur(1.5px);
+            opacity: 0.5;
         }
         /* 中景层：中速，模糊轻 */
         #layer-mid {
-            filter: blur(1.5px);
-            opacity: 0.1;
+            filter: blur(0.7px);
+            opacity: 0.8;
         }
         /* 前景层：快速，清晰 */
         #layer-fast {
@@ -442,7 +442,7 @@
     const particles = [];
     function initParticles() {
         particles.length = 0;
-        const count = isMobile() ? 50 : 100; 
+        const count = isMobile() ? 40 : 80; 
         for (let i = 0; i < count; i++) {
             particles.push(new CharParticle(window.innerWidth, window.innerHeight, true));
         }
